@@ -51,7 +51,7 @@ public final class EchoClient {
             sslCtx = null;
         }
 
-        // Configure the client.
+        // Configure the client. 配置Echo客户端
         EventLoopGroup group = new NioEventLoopGroup();
         try {
             Bootstrap b = new Bootstrap();
@@ -70,12 +70,13 @@ public final class EchoClient {
                  }
              });
 
-            // Start the client.
+            // Start the client. 启动客户端
             ChannelFuture f = b.connect(HOST, PORT).sync();
 
             // Wait until the connection is closed.
             f.channel().closeFuture().sync();
         } finally {
+            // 优雅关闭
             // Shut down the event loop to terminate all threads.
             group.shutdownGracefully();
         }
